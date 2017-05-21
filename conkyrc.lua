@@ -26,8 +26,9 @@ conky.config = {
 
 	own_window = true,
 	own_window_type = 'normal',
-	own_window_transparent = true,
-	own_window_argb_visual = true,
+	own_window_transparent = false,
+	own_window_argb_visual = false,
+	own_window_argb_value = 255,
 	own_window_class = 'conky-semi',
 	own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
 
@@ -58,7 +59,7 @@ conky.config = {
 -- Green
 	color5 = '#77B753',
 -- Loading lua script for drawning rings
-	lua_load = '~/.conky/seamod/seamod_rings.lua',
+	lua_load = 'seamod_rings.lua',
 	lua_draw_hook_pre = 'main',
 
 };
@@ -100,21 +101,21 @@ ${offset 120}${diskiograph 40,220 666666 666666 -0.5}${voffset -30}
 ${voffset 20}
 ${offset 15}${font Ubuntu:size=10:style=bold}${color1}Free: $color3${font Ubuntu:size=10:style=normal}${fs_free /}${alignr}${font Ubuntu:size=10:style=bold}${color1}Used: $color3${font Ubuntu:size=10:style=normal}${fs_used /}
 ${offset 15}${font Ubuntu:size=10:style=bold}${color1}Free: $color3${font Ubuntu:size=10:style=normal}${fs_free /home}${alignr}${font Ubuntu:size=10:style=bold}${color1}Used: $color3${font Ubuntu:size=10:style=normal}${fs_used /home}
-${offset 15}${font Ubuntu:size=10:style=bold}${color1}Free: $color3${font Ubuntu:size=10:style=normal}${fs_free /media/files}${alignr}${font Ubuntu:size=10:style=bold}${color1}Used: $color3${font Ubuntu:size=10:style=normal}${fs_used /media/files}
+${offset 15}${font Ubuntu:size=10:style=bold}${color1}Free: $color3${font Ubuntu:size=10:style=normal}${fs_free /media}${alignr}${font Ubuntu:size=10:style=bold}${color1}Used: $color3${font Ubuntu:size=10:style=normal}${fs_used /media}
 
 # Network data (my desktop have only LAN). ETHERNET ring is mostly useless but looks pretty, main info is in the graphs
 ${voffset 45}
-${offset 200}${font Ubuntu:size=10:style=bold}${color1}Lan IP: ${alignr}$color3${addr wlan0} 
+${offset 200}${font Ubuntu:size=10:style=bold}${color1}Lan IP: ${alignr}$color3${addr enp3s0} 
 ${offset 200}${font Ubuntu:size=10:style=bold}${color1}Ext IP: ${alignr}$color3${execi 600 wget -q -O /dev/stdout http://checkip.dyndns.org/ | cut -d : -f 2- | cut -d \< -f -1} 
 ${offset 190}${font Ubuntu:size=10:style=bold}${alignr}$color3${execi 600 wget -q -O /dev/stdout https://www.dnsleaktest.com/ | grep from | grep -o '<p>.*<img' | grep -o '>.*<' | grep -oEi '[a-zA-Z0-9 ,]+'}
 
 ${voffset -60}
 ${offset 90}${font Ubuntu:size=11:style=bold}${color5}ETHERNET
 ${voffset 40}             
-${offset 15}${color1}${font ubuntu:size=10:style=bold}Up: ${alignr}${font Ubuntu:size=10:style=normal}$color2${upspeed wlan0} / ${totalup wlan0}
-${offset 15}${upspeedgraph wlan0 40,320 4B1B0C FF5C2B 1280KiB -l}
-${offset 15}${color1}${font Ubuntu:size=10:style=bold}Down: ${alignr}${font Ubuntu:size=10:style=normal}$color2${downspeed wlan0} / ${totaldown wlan0}
-${offset 15}${downspeedgraph wlan0 40,320 324D23 77B753 1280KiB -l}
+${offset 15}${color1}${font ubuntu:size=10:style=bold}Up: ${alignr}${font Ubuntu:size=10:style=normal}$color2${upspeed enp3s0} / ${totalup enp3s0}
+${offset 15}${upspeedgraph enp3s0 40,320 4B1B0C FF5C2B 1280KiB -l}
+${offset 15}${color1}${font Ubuntu:size=10:style=bold}Down: ${alignr}${font Ubuntu:size=10:style=normal}$color2${downspeed enp3s0} / ${totaldown enp3s0}
+${offset 15}${downspeedgraph enp3s0 40,320 324D23 77B753 1280KiB -l}
 
 ${color4}${hr 2}
 
